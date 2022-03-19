@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
+ <img width="100px" src="https://images.app.goo.gl/kVNtnDesLAvtd7aH6" align="center" alt="GitHub Readme Stats" />
 ---
 
 Нужно определить ходы коня на шахматной доске.
