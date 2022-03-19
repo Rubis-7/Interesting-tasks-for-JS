@@ -1,0 +1,28 @@
+#field{
+    width: 320px;
+    height: 320px;
+    box-sizing: content-box;
+    border: 1px solid black;
+}
+
+#field::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.chess-block {
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+.bg-black {
+    background: #36373C;
+}
+.active {
+    background-image: url(./icons8.png);
+    background-color: #B44D15;
+    background-size: contain;
+}
+.green {
+    background-color: #18AE3A;
+}
