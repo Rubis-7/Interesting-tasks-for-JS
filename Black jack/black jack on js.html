@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <link rel="icon" href="https://www.by/styles/images/cube.ico" />
+  <title>Black Jack</title>
+</head>
+
+<body>
+  <script>
+    var a = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10,
+      2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10,
+      2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10,
+      2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10,
+    ];
+
+    function shuffle(array) { // Функция для рандомного выбора элемента в массиве
+      var currentIndex = array.length,
+        temporaryValue,
+        randomIndex;
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+    }
+
+    shuffle(a); // Выбираем массив для рандома
+
+    let team = [ // Объявляем команду (массив с объектами) в который можно добавлять или убовлять игроков - всё будет работать
+      {
+        name: "Nikita", // Имя игрока
+        summ: a.shift() + a.shift(), // Выдаём игроку 2 карты 
+      },
+      {
+        name: "Alina",
+        summ: a.shift() + a.shift(),
+      },
+      {
+        name: "Vadim",
+        summ: a.shift() + a.shift(),
+      },
+      {
+        name: "Zhenya",
+        summ: a.shift() + a.shift(),
+      },
+      {
+        name: "Tanya",
+        summ: a.shift() + a.shift(),
+      },
+      {
+        name: "Andrey",
+        summ: a.shift() + a.shift(),
+      },
+    ];
+
+    let Dealer = a.shift() + a.shift(); // Выдаём дилеру 2 карты
+    console.log(Dealer);
+
+    team.forEach(function (user) { // создаём логику с помощью которой спрашиваем хочет ли игрок взять карту и выдаём если да
+      while (true) {
+        if (user.summ > 21) {
+          break;
+        }
+        if (
+          prompt(
+            `Ход ${user.name}! Сумма ваших чисел ${user.summ} хотите взять ещё?`
+          ) === "да"
+        ) {
+          user.summ += a.shift();
+        } else {
+          break;
+        }
+      }
+    });
+
+    let maxvalue = 0;
+    let halfFinal = [];
+
+    team.forEach((user) => { // Вычисляем игроков победителей
+      if (user.summ <= 21) {
+        if (user.summ === maxvalue) {
+          halfFinal.push(user);
+        }
+        if (user.summ > maxvalue) {
+          maxvalue = user.summ;
+          halfFinal.length = 0;
+          halfFinal.push(user);
+        }
+      }
+    });
+
+    while (Dealer <= maxvalue && Dealer < 20) { // Логика когда дилер берёт карту
+      Dealer = Dealer + a.shift();
+      console.log(Dealer);
+    }
+
+    if (Dealer > maxvalue && Dealer <= 21) { // Выводим результаты
+      alert("Дилер выиграл! Набрав " + Dealer + " очков!");
+    } else if (Dealer === maxvalue) {
+      let draw = 'Победители: Дилер набрав ' + Dealer + ' очков! ';
+
+      halfFinal.forEach((user) => {
+        draw = draw + user.name + ' набрав ' + user.summ + ' очков! ';
+      });
+      alert(draw)
+    } else {
+      let playWin = "Победители: ";
+
+      halfFinal.forEach((user) => {
+        playWin = playWin + user.name + ' набрав ' + user.summ + ' очков! ';
+      });
+      alert(playWin);
+    }
+  </script>
+</body>
+
+</html>
